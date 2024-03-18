@@ -5,9 +5,12 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
 
-from app import app
-from flask import render_template, request, redirect, url_for,flash
-
+from app import app, db
+from flask import render_template, request, redirect, url_for, flash
+from .forms import PropertyForm
+from app.models import Property
+from werkzeug.utils import secure_filename
+import os
 
 ###
 # Routing for your application.
@@ -48,6 +51,34 @@ def send_text_file(file_name):
     """Send your static text file."""
     file_dot_text = file_name + '.txt'
     return app.send_static_file(file_dot_text)
+
+# route for creating the property
+@app.route('/properties/create', methods=['POST', 'GET'])
+def createProperty():
+    form = PropertyForm()
+    if request.method == 'POST':
+      
+        if form.validate_on_submit():
+          
+            property_image = form.photo.data
+            property_filename = secure_filename(property_image.filename)
+            property_image.save(
+                os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'], property_filename)
+            )
+         
+            property = Property(form.title.data, form.num_bedrooms.data,
+                                form.num_bathrooms.data, form.description.data,
+                                form.location.data, form.property_type.data,
+                                form.price.data, property_filename)
+            db.session.add(property)
+            db.session.commit()
+            flash('Property Added successfully.')
+            return redirect(url_for('getProperties'))
+        else:
+            print (form.errors)
+            print ("Invalid Form Submission")
+
+    return render_template('property_form.html', form=form)
 
 
 @app.after_request

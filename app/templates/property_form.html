@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <h1>Add New Property</h1>
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+        {% for error in form.title.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.num_bedrooms.label(class="form-label") }}
+        {{ form.num_bedrooms(class="form-control") }}
+        {% for error in form.num_bedrooms.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.num_bathrooms.label(class="form-label") }}
+        {{ form.num_bathrooms(class="form-control") }}
+        {% for error in form.num_bathrooms.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.description.label(class="form-label") }}
+        {{ form.description(class="form-control") }}
+        {% for error in form.description.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.location.label(class="form-label") }}
+        {{ form.location(class="form-control") }}
+        {% for error in form.location.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.property_type.label(class="form-label") }}
+        {{ form.property_type(class="form-control") }}
+        {% for error in form.property_type.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.price.label(class="form-label") }}
+        {{ form.price(class="form-control") }}
+        {% for error in form.price.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.photo.label(class="form-label") }}
+        {{ form.photo(class="form-control-file") }}
+        {% for error in form.photo.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
