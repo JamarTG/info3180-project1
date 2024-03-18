@@ -1,3 +1,129 @@
 body {
     padding-top: 5rem;
 }
+
+
+#properties-header {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.flash {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#property-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.property-list-item {
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.property-list-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.property-list-item p {
+    margin: 5px 0;
+}
+
+.property-list-item a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.property-list-item a:hover {
+    background-color: #0056b3;
+}
+
+#property-detail-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.property-detail-item {
+    margin-bottom: 15px;
+}
+
+.property-detail-item p:first-child {
+    font-weight: bold;
+}
+
+.property-detail-item p.description {
+    white-space: pre-line;
+}
+
+
+#property-detail-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.property-picture {
+    width: 300px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px;
+}
+
+.property-details {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.property-title {
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.property-location {
+    font-size: 18px;
+}
+
+.property-price {
+    font-weight: bold;
+}
+
+.property-description {
+    font-size: 16px;
+}
+
+.property-bedrooms,
+.property-bathrooms,
+.property-type {
+    font-size: 16px;
+}
+
+.email-button {
+    background-color: #007bff;
+    color: #fff; 
+    border: none;
+    padding: 10px 20px; 
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px; 
+}
+
+.email-button:hover {
+    background-color: #0056b3; 
+}

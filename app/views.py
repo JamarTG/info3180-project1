@@ -6,7 +6,7 @@ This file contains the routes for your application.
 """
 
 from app import app, db
-from flask import render_template, request, redirect, url_for, flash,abort
+from flask import render_template, request, redirect, send_from_directory, url_for, flash,abort
 from .forms import PropertyForm
 from app.models import Property
 from werkzeug.utils import secure_filename
@@ -27,15 +27,6 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-
-###
-# The functions below should be applicable to all Flask apps.
-###
-# @app.route('/<file_name>.txt')
-# def send_text_file(file_name):
-#     """Send your static text file."""
-#     file_dot_text = file_name + '.txt'
-#     return app.send_static_file(file_dot_text)
 
 # Display Flask WTF errors as Flash messages
 def flash_errors(form):
@@ -73,7 +64,7 @@ def create_property():
             db.session.add(property)
             db.session.commit()
             flash('Property Added successfully.')
-            return redirect(url_for('getProperties'))
+            return redirect(url_for('get_properties'))
         else:
             print (form.errors)
             print ("Invalid Form Submission")
@@ -84,6 +75,12 @@ def create_property():
 def get_properties():
     properties = Property.query.all()
     return render_template('properties.html', properties=properties)
+
+@app.route('/uploads/<filename>', methods=['GET'])
+def get_image(filename):
+    return send_from_directory(os.path.join(os.getcwd(), 
+    app.config['UPLOAD_FOLDER']), filename)
+
 
 @app.route('/properties/<propertyid>', methods=['GET'])
 def get_property(propertyid):

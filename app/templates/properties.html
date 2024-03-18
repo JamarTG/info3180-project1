@@ -10,7 +10,7 @@
             <p>{{ property.title }}</p>
             <p>{{ property.location }}</p>
             <p>${{ property.price }}</p>
-            <a href={{ url_for('getProperty', propertyid=property.id )}}>View Property</a>
+            <a href={{ url_for('get_property', propertyid=property.id )}}>View Property</a>
         </div>
     {% endfor %}
 </div>

@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block main %}
-
-    <img class='property-picture' src={{ url_for('get_image',filename=property.photo) }} />
-    <p>{{ property.title }}</p>
-    <p>{{ property.location }}</p>
-    <p>${{ property.price }}</p>
-    <p>{{ property.description }}</p>
-    <p># of bedrooms: {{ property.num_bedrooms }}</p>
-    <p># of bathrooms: {{ property.num_bathrooms }}</p>
-    <p>Property Type: {{ property.property_type }}</p>
-
-
+    <div id="property-detail-container">
+        <img class='property-picture' src={{ url_for('get_image',filename=property.photo) }} />
+        <div class="property-details">
+            <p class="property-title">{{ property.title }}</p>
+            <p class="property-location">{{ property.location }}</p>
+            <p class="property-price">${{ property.price }}</p>
+            <p class="property-description">{{ property.description }}</p>
+            <p class="property-bedrooms"># of bedrooms: {{ property.num_bedrooms }}</p>
+            <p class="property-bathrooms"># of bathrooms: {{ property.num_bathrooms }}</p>
+            <p class="property-type">Property Type: {{ property.property_type }}</p>
+            <button class="email-button">Email Realtor</button>
+        </div>
+    </div>
 {% endblock %}
