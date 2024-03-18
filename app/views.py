@@ -6,7 +6,7 @@ This file contains the routes for your application.
 """
 
 from app import app, db
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash,abort
 from .forms import PropertyForm
 from app.models import Property
 from werkzeug.utils import secure_filename
@@ -54,7 +54,7 @@ def send_text_file(file_name):
 
 # route for creating the property
 @app.route('/properties/create', methods=['POST', 'GET'])
-def createProperty():
+def create_property():
     form = PropertyForm()
     if request.method == 'POST':
       
@@ -80,6 +80,18 @@ def createProperty():
 
     return render_template('property_form.html', form=form)
 
+@app.route('/properties', methods=['GET'])
+def get_properties():
+    properties = Property.query.all()
+    return render_template('properties.html', properties=properties)
+
+@app.route('/properties/<propertyid>', methods=['GET'])
+def get_property(propertyid):
+    property = Property.query.filter_by(id=propertyid).first()
+    if property is None:
+        print("Property not found")
+        abort(404) 
+    return render_template('property_detail.html', property=property)
 
 @app.after_request
 def add_header(response):
