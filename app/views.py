@@ -6,7 +6,7 @@ This file contains the routes for your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for,flash
 
 
 ###
@@ -16,8 +16,8 @@ from flask import render_template, request, redirect, url_for
 @app.route('/')
 def home():
     """Render website's home page."""
+    print("here")
     return render_template('home.html')
-
 
 @app.route('/about/')
 def about():
@@ -28,6 +28,11 @@ def about():
 ###
 # The functions below should be applicable to all Flask apps.
 ###
+# @app.route('/<file_name>.txt')
+# def send_text_file(file_name):
+#     """Send your static text file."""
+#     file_dot_text = file_name + '.txt'
+#     return app.send_static_file(file_dot_text)
 
 # Display Flask WTF errors as Flash messages
 def flash_errors(form):
@@ -61,3 +66,6 @@ def add_header(response):
 def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
+
+if __name__ == '__main__':
+    app.run(debug=True, host="0.0.0.0", port="8080")
