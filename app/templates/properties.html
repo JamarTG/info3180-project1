@@ -5,12 +5,14 @@
 {% include 'flash_view.html' %}
 <div id="property-container">
     {% for property in properties %}
-        <div class="property-list-item">
+        <div class="property-card">
             <img class='property-picture' src={{ url_for('get_image',filename=property.photo) }} />
-            <p>{{ property.title }}</p>
-            <p>{{ property.location }}</p>
-            <p>${{ property.price }}</p>
-            <a href={{ url_for('get_property', propertyid=property.id )}}>View Property</a>
+            <div class="property-details">
+                <p>{{ property.title }}</p>
+                <p>📍 {{ property.location }}</p>
+                <p class="price">${{ property.price }}</p>
+            </div>
+            <a class="btn btn-primary" href={{ url_for('get_property', propertyid=property.id )}}>View Property</a>
         </div>
     {% endfor %}
 </div>
